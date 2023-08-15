@@ -1,0 +1,19 @@
+site_name: MINAv2 Instruction Set Architecture manual
+
+nav:
+  - Home: index.md
+  - Introduction: introduction.md
+  - ISA Overview: isa_overview.md
+  - Exceptions: exceptions.md
+  - Data Types: data_types.md
+  - MINA32v2: mina32v2.md
+
+theme:
+  features:
+    - tabs
+  name: readthedocs
+  font:
+    text: Ubuntu
+    code: Ubuntu Mono
+
+copyright: Copyright &copy; 2023 noumidev
