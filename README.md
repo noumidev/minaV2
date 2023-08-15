@@ -1,2 +1,2 @@
-# minaV2
- Version 2 of the MINA Instruction Set Architecture.
+# MINA Instruction Set Architecture Version 2
+ This repository contains the ISA manual for MINAv2.
