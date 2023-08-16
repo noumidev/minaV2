@@ -7,6 +7,7 @@ nav:
   - Exceptions: exceptions.md
   - Data Types: data_types.md
   - MINA32v2: mina32v2.md
+  - Instructions: instructions.md
 
 theme:
   features:
