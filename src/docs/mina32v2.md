@@ -24,7 +24,7 @@ R31        | LA     | Return address (Link Address)
 
 MINA32v2 defines four core instruction formats. Instructions are 32-bit wide and *must* be aligned on a 4-byte boundary; a misaligned **IA** will generate an exception.
 
-![Instruction Formats](img/MINA32v2%20Instruction%20Formats.png)
+![Instruction Formats](../img/MINA32v2%20Instruction%20Formats.png)
 
 **R-type**: The Register type instruction format specifies three registers: **RD** (Destination), **RA** and **RB** (source A, source B). The available opcode space is 16 bits.
 
