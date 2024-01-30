@@ -1,0 +1,94 @@
+```
+Primary Opcodes
+
+0000000 - UDF
+0000001 - SYSCALL
+
+0001000 - ALU
+0001001 - ALU
+0001100 - SHIFT
+
+0001101 - MULTIPLY
+
+0001110 - COMPARE
+
+0001111 - SEL
+
+0010000 - LOAD
+0010001 - STORE
+
+0110xxx - EXTENSION/RESERVED
+
+0111100 - B
+0111101 - BT
+0111110 - BL
+0111111 - BLT
+
+1000100 - MFS
+1000101 - MTS
+
+1001000 - ALU
+1001001 - ALU
+1001010 - CLIP
+1001011 - EXTEND
+1001100 - SHIFT
+
+1001110 - COMPARE
+
+1010000 - LOAD
+1010001 - STORE
+
+1110xxx - EXTENSION/RESERVED
+
+1111000 - MOVH
+1111001 - ADDH
+1111010 - ORH
+1111011 - XORH
+
+1111100 - B
+1111101 - BT
+1111110 - BL
+1111111 - BLT
+```
+
+```
+Secondary Opcodes:
+
+CLIP
+xxxxxxx0x0 - CLPB
+xxxxxxx0x1 - CLPH
+xxxxxxx1x0 - CLPBS
+xxxxxxx1x1 - CLPHS
+
+COMPARE
+xxxxxxx000 - CEQ
+xxxxxxx001 - CHI
+xxxxxxx011 - CGT
+xxxxxxx100 - CNE
+xxxxxxx101 - CLS
+xxxxxxx111 - CLE
+
+EXTEND
+xxxxxxx0x0 - EXTB
+xxxxxxx0x1 - EXTH
+xxxxxxx1x0 - EXTBS
+xxxxxxx1x1 - EXTHS
+
+LOAD
+xxxxxxx000 - LB
+xxxxxxx001 - LH
+xxxxxxx010 - LW
+xxxxxxx100 - LBS
+xxxxxxx101 - LHS
+
+SHIFT
+xxxxxxxx00 - SHL
+xxxxxxxx01 - SHR
+xxxxxxxx10 - SHRS
+xxxxxxxx11 - ROR
+
+STORE
+xxxxxxxx00 - SB
+xxxxxxxx01 - SH
+xxxxxxxx10 - SW
+```

@@ -39,12 +39,17 @@ MINA32v2 defines four core instruction formats. Instructions are 32-bit wide and
 Mnemonic | Description
 :--------|:---------------------------
 ADD      | Add
+ADDH     | Add High
 AND      | Bitwise AND
 ANDN     | Bitwise AND NOT
 B        | Branch
 BL       | Branch and Link
 BLT      | Branch and Link if True
 BT       | Branch if True
+CLPB     | Clip Byte
+CLPBS    | Clip Byte Signed
+CLPH     | Clip Halfword
+CLPHS    | Clip Halfword Signed
 CEQ      | Compare Equal
 CGT      | Compare Grater Than
 CHI      | Compare Higher
@@ -71,6 +76,7 @@ MUL      | Multiply
 MULF     | Multiply Fixed Point
 MULL     | Multiply Long
 OR       | Bitwise OR
+ORH      | Bitwise OR High
 ROR      | Rotate Right
 SB       | Store Byte
 SEL      | Select
@@ -79,5 +85,7 @@ SHL      | Shift Left
 SHR      | Shift Right
 SHRS     | Shift Right Signed
 SW       | Store Word
+SYSCALL  | System Call
 UDF      | Architecturally Undefined
-XOR      | Bitwise XOR
+XOR      | Bitwise Exclusive OR
+XORH     | Bitwise Exclusive OR High
