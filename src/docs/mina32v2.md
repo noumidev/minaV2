@@ -57,7 +57,6 @@ CLPH     | Clip Halfword
 CLPHS    | Clip Halfword Signed
 CLS      | Compare Lower/Same
 CLZ      | Count Leading 0s
-REV      | Reverse
 CNE      | Compare Not Equal
 EXT      | Extract
 EXTS     | Extract Signed
