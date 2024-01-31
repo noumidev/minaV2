@@ -1999,7 +1999,7 @@
 **Operation**:
 
 ```
-    RD = RA | RB
+    RD = RA ^ RB
 ```
 
 **Exceptions**: None
