@@ -1561,6 +1561,54 @@
 
 **Exceptions**: None
 
+# ROR (1)
+
+**Rotate Right**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001011` | `N/A`        | `I`      |
+
+**Syntax**
+
+```
+    ROR RD, RS, #imm
+```
+
+**Description**: Register **RS** is right-rotated `#imm` bits, the result is written to **RD**. The shift amount is masked to 5 bits.
+
+**Operation**:
+
+```
+    RD = rotate_right(RS, #imm[4:0])
+```
+
+**Exceptions**: None
+
+# ROR (2)
+
+**Rotate Right**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001011` | `N/A`        | `R`      |
+
+**Syntax**
+
+```
+    ROR RD, RA, RB
+```
+
+**Description**: Register **RA** is right-rotated **RB** bits, the result is written to **RD**. The shift amount is masked to 5 bits.
+
+**Operation**:
+
+```
+    RD = rotate_right(RA, RB[4:0])
+```
+
+**Exceptions**: None
+
 # SB (1)
 
 **Store Byte**
