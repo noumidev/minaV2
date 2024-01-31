@@ -1,3 +1,51 @@
+# ADD (1)
+
+**Add**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001000` | `0000000000` | `I`      |
+
+**Syntax**
+
+```
+    ADD RD, RS, #imm
+```
+
+**Description**: 12-bit immediate data is added to register **RS**, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RS + #imm
+```
+
+**Exceptions**: None
+
+# ADD (2)
+
+**Add**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001000` | `0000000000` | `R`      |
+
+**Syntax**
+
+```
+    ADD RD, RA, RB
+```
+
+**Description**: Register **RA** is added to **RB**, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RA + RB
+```
+
+**Exceptions**: None
+
 # ADDH
 
 **Add High**
@@ -18,6 +66,102 @@
 
 ```
     RD += left_shift(#limm, 12)
+```
+
+**Exceptions**: None
+
+# AND (1)
+
+**Bitwise AND**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001000` | `0000000110` | `I`      |
+
+**Syntax**
+
+```
+    AND RD, RS, #imm
+```
+
+**Description**: Register **RS** is ANDed with 12-bit immediate data, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RS & #imm
+```
+
+**Exceptions**: None
+
+# AND (2)
+
+**Bitwise AND**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001000` | `0000000110` | `R`      |
+
+**Syntax**
+
+```
+    AND RD, RA, RB
+```
+
+**Description**: Register **RA** is ANDed with **RB**, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RA & RB
+```
+
+**Exceptions**: None
+
+# ANDN (1)
+
+**Bitwise AND NOT**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001000` | `0000000111` | `I`      |
+
+**Syntax**
+
+```
+    ANDN RD, RS, #imm
+```
+
+**Description**: Register **RS** is ANDed with the complement of 12-bit immediate data, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RS & ~(#imm)
+```
+
+**Exceptions**: None
+
+# ANDN (2)
+
+**Bitwise AND NOT**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001000` | `0000000111` | `R`      |
+
+**Syntax**
+
+```
+    ANDN RD, RA, RB
+```
+
+**Description**: Register **RA** is ANDed with the complement of **RB**, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RA & ~RB
 ```
 
 **Exceptions**: None
@@ -239,15 +383,15 @@
 **Syntax**
 
 ```
-    CEQ RA, #imm
+    CEQ RS, #imm
 ```
 
-**Description**: The T bit is set if **RA** is equal to the unsigned 12-bit immediate data; otherwise, it is cleared.
+**Description**: The T bit is set if **RS** is equal to the unsigned 12-bit immediate data; otherwise, it is cleared.
 
 **Operation**:
 
 ```
-    if (RA == #imm)
+    if (RS == #imm)
         T = 1
     else
         T = 0
@@ -293,15 +437,15 @@
 **Syntax**
 
 ```
-    CGT RA, #imm
+    CGT RS, #imm
 ```
 
-**Description**: The T bit is set if **RA** is greater than the sign-extended 12-bit immediate data; otherwise, it is cleared.
+**Description**: The T bit is set if **RS** is greater than the sign-extended 12-bit immediate data; otherwise, it is cleared.
 
 **Operation**:
 
 ```
-    if (signed(RA) > signed(sign_extend(#imm)))
+    if (signed(RS) > signed(sign_extend(#imm)))
         T = 1
     else
         T = 0
@@ -347,15 +491,15 @@
 **Syntax**
 
 ```
-    CHI RA, #imm
+    CHI RS, #imm
 ```
 
-**Description**: The T bit is set if **RA** is greater than the unsigned 12-bit immediate data; otherwise, it is cleared.
+**Description**: The T bit is set if **RS** is greater than the unsigned 12-bit immediate data; otherwise, it is cleared.
 
 **Operation**:
 
 ```
-    if (RA > #imm)
+    if (RS > #imm)
         T = 1
     else
         T = 0
@@ -401,15 +545,15 @@
 **Syntax**
 
 ```
-    CLE RA, #imm
+    CLE RS, #imm
 ```
 
-**Description**: The T bit is set if **RA** is less than or equal to the sign-extended 12-bit immediate data; otherwise, it is cleared.
+**Description**: The T bit is set if **RS** is less than or equal to the sign-extended 12-bit immediate data; otherwise, it is cleared.
 
 **Operation**:
 
 ```
-    if (signed(RA) <= signed(sign_extend(#imm)))
+    if (signed(RS) <= signed(sign_extend(#imm)))
         T = 1
     else
         T = 0
@@ -444,6 +588,30 @@
 
 **Exceptions**: None
 
+# CLO
+
+**Count Leading 1s**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001001` | `0000000011` | `I`      |
+
+**Syntax**
+
+```
+    CLO RD, RS
+```
+
+**Description**: The leading 1-bits in register **RS** are counted, the result is written to **RD**.
+
+**Operation**:
+
+```
+    RD = count_leading_ones(RS)
+```
+
+**Exceptions**: None
+
 # CLPB
 
 **Clip Byte**
@@ -455,18 +623,18 @@
 **Syntax**
 
 ```
-    CLPB RD, RA
+    CLPB RD, RS
 ```
 
-**Description**: Register **RA** is clamped to the unsigned 8-bit integer range, the result is written to **RD**.
+**Description**: Register **RS** is clamped to the unsigned 8-bit integer range, the result is written to **RD**.
 
 **Operation**
 
 ```
-    if (RA > 0xFF)
+    if (RS > 0xFF)
         RD = 0xFF
     else
-        RD = RA
+        RD = RS
 ```
 
 **Exceptions**: None
@@ -482,20 +650,20 @@
 **Syntax**
 
 ```
-    CLPBS RD, RA
+    CLPBS RD, RS
 ```
 
-**Description**: Register **RA** is clamped to the signed 8-bit integer range, the result is written to **RD**.
+**Description**: Register **RS** is clamped to the signed 8-bit integer range, the result is written to **RD**.
 
 **Operation**
 
 ```
-    if (signed(RA) > signed(0x7F))
+    if (signed(RS) > signed(0x7F))
         RD = 0x7F
-    else if (signed(RA) < signed(0xFFFFFF80))
+    else if (signed(RS) < signed(0xFFFFFF80))
         RD = 0xFFFFFF80
     else
-        RD = RA
+        RD = RS
 ```
 
 **Exceptions**: None
@@ -511,18 +679,18 @@
 **Syntax**
 
 ```
-    CLPH RD, RA
+    CLPH RD, RS
 ```
 
-**Description**: Register **RA** is clamped to the unsigned 16-bit integer range, the result is written to **RD**.
+**Description**: Register **RS** is clamped to the unsigned 16-bit integer range, the result is written to **RD**.
 
 **Operation**
 
 ```
-    if (RA > 0xFFFF)
+    if (RS > 0xFFFF)
         RD = 0xFFFF
     else
-        RD = RA
+        RD = RS
 ```
 
 **Exceptions**: None
@@ -538,10 +706,10 @@
 **Syntax**
 
 ```
-    CLPHS RD, RA
+    CLPHS RD, RS
 ```
 
-**Description**: Register **RA** is clamped to the signed 16-bit integer range, the result is written to **RD**.
+**Description**: Register **RS** is clamped to the signed 16-bit integer range, the result is written to **RD**.
 
 **Operation**
 
@@ -551,7 +719,7 @@
     else if (signed(RA) < signed(0xFFFF8000))
         RD = 0xFFFF8000
     else
-        RD = RA
+        RD = RS
 ```
 
 **Exceptions**: None
@@ -567,15 +735,15 @@
 **Syntax**
 
 ```
-    CLS RA, #imm
+    CLS RS, #imm
 ```
 
-**Description**: The T bit is set if **RA** is less than or equal to the unsigned 12-bit immediate data; otherwise, it is cleared.
+**Description**: The T bit is set if **RS** is less than or equal to the unsigned 12-bit immediate data; otherwise, it is cleared.
 
 **Operation**:
 
 ```
-    if (RA <= #imm)
+    if (RS <= #imm)
         T = 1
     else
         T = 0
@@ -610,6 +778,30 @@
 
 **Exceptions**: None
 
+# CLZ
+
+**Count Leading 0s**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001001` | `0000000010` | `I`      |
+
+**Syntax**
+
+```
+    CLZ RD, RS
+```
+
+**Description**: The leading 0-bits in register **RS** are counted, the result is written to **RD**.
+
+**Operation**:
+
+```
+    RD = count_leading_zeros(RS)
+```
+
+**Exceptions**: None
+
 # CNE (1)
 
 **Compare Not Equal**
@@ -621,15 +813,15 @@
 **Syntax**
 
 ```
-    CNE RA, #imm
+    CNE RS, #imm
 ```
 
-**Description**: The T bit is set if **RA** is not equal to the unsigned 12-bit immediate data; otherwise, it is cleared.
+**Description**: The T bit is set if **RS** is not equal to the unsigned 12-bit immediate data; otherwise, it is cleared.
 
 **Operation**:
 
 ```
-    if (RA != #imm)
+    if (RS != #imm)
         T = 1
     else
         T = 0
@@ -664,98 +856,122 @@
 
 **Exceptions**: None
 
-# EXTB
+# EXT
 
-**Extend Byte**
+**Extract**
 
 | Opcode    | Secondary    | Encoding |
 |-----------|--------------|----------|
-| `1001011` | `0000000000` | `I`      |
+| `0001100` | `0000000000` | `R*`     |
 
 **Syntax**
 
 ```
-    EXTB RD, RA
+    EXT RD, RA, #size, #shift
 ```
 
-**Description**: The low 8 bits of register **RA** are zero-extended, the result is written to **RD**.
+**Description**: Register **RA** is right-shifted `#shift` bits, the first `#size` bits of the result are zero-extended and written to **RD**. A `#size` of 0 encodes the value 32.
 
-**Operation**
+**Operation**:
 
 ```
-    RD = zero_extend(RA[7:0])
+    #size = secopc[4:0]
+    if (#size == 0)
+        #size = 32
+    
+    #shift = secopc[9:5]
+
+    RD = zero_extend(right_shift(RA, #shift)[#size-1:0])
 ```
 
 **Exceptions**: None
 
-# EXTBS
+# EXTS
 
-**Extend Byte Signed**
+**Extract Signed**
 
 | Opcode    | Secondary    | Encoding |
 |-----------|--------------|----------|
-| `1001011` | `0000000100` | `I`      |
+| `0001100` | `0000000100` | `R*`     |
 
 **Syntax**
 
 ```
-    EXTBS RD, RA
+    EXTS RD, RA, #size, #shift
 ```
 
-**Description**: The low 8 bits of register **RA** are sign-extended, the result is written to **RD**.
+**Description**: Register **RA** is right-shifted `#shift` bits, the first `#size` bits of the result are sign-extended and written to **RD**. A `#size` of 0 encodes the value 32.
 
-**Operation**
+**Operation**:
 
 ```
-    RD = sign_extend(RA[7:0])
+    #size = secopc[4:0]
+    if (#size == 0)
+        #size = 32
+    
+    #shift = secopc[9:5]
+
+    RD = sign_extend(right_shift(RA, #shift)[#size-1:0])
 ```
 
 **Exceptions**: None
 
-# EXTH
+# INS
 
-**Extend Halfword**
+**Insert**
 
 | Opcode    | Secondary    | Encoding |
 |-----------|--------------|----------|
-| `1001011` | `0000000001` | `I`      |
+| `0001100` | `0000000001` | `R*`     |
 
 **Syntax**
 
 ```
-    EXTH RD, RA
+    INS RD, RA, RB, #size, #shift
 ```
 
-**Description**: The low 16 bits of register **RA** are zero-extended, the result is written to **RD**.
+**Description**: The first `#size` bits of register **RB** are left-shifted `#shift` bits and inserted in **RA**, the result is written to **RD**. A `#size` of 0 encodes the value 32.
 
-**Operation**
+**Operation**:
 
 ```
-    RD = zero_extend(RA[15:0])
+    #size = secopc[4:0]
+    if (#size == 0)
+        #size = 32
+    
+    #shift = secopc[9:5]
+
+    RD = {RA[31:#size+#shift], left_shift(RB[#size-1:0], #shift), RA[#shift-1:0]}
 ```
 
 **Exceptions**: None
 
-# EXTHS
+# INSZ
 
-**Extend Halfword Signed**
+**Insert Zero**
 
 | Opcode    | Secondary    | Encoding |
 |-----------|--------------|----------|
-| `1001011` | `0000000101` | `I`      |
+| `0001100` | `0000000011` | `R*`     |
 
 **Syntax**
 
 ```
-    EXTHS RD, RA
+    INSZ RD, RB, #size, #shift
 ```
 
-**Description**: The low 16 bits of register **RA** are sign-extended, the result is written to **RD**.
+**Description**: The first `#size` bits of register **RB** are left-shifted `#shift` bits, the zero-extended result is written to **RD**. A `#size` of 0 encodes the value 32.
 
-**Operation**
+**Operation**:
 
 ```
-    RD = sign_extend(RA[15:0])
+    #size = secopc[4:0]
+    if (#size == 0)
+        #size = 32
+    
+    #shift = secopc[9:5]
+
+    RD = zero_extend(left_shift(RB[#size-1:0], #shift))
 ```
 
 **Exceptions**: None
@@ -771,15 +987,15 @@
 **Syntax**
 
 ```
-    LB RD, [RA, #imm]
+    LB RD, [RS, #imm]
 ```
 
-**Description**: Byte data is zero-extended and read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RA**.
+**Description**: Byte data is zero-extended and read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RS**.
 
 **Operation**:
 
 ```
-    addr = RA + sign_extend(#imm)
+    addr = RS + sign_extend(#imm)
 
     RD = read_byte(addr)
 ```
@@ -823,15 +1039,15 @@
 **Syntax**
 
 ```
-    LBS RD, [RA, #imm]
+    LBS RD, [RS, #imm]
 ```
 
-**Description**: Byte data is sign-extended and read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RA**.
+**Description**: Byte data is sign-extended and read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RS**.
 
 **Operation**:
 
 ```
-    addr = RA + sign_extend(#imm)
+    addr = RS + sign_extend(#imm)
 
     RD = sign_extend(read_byte(addr))
 ```
@@ -875,17 +1091,17 @@
 **Syntax**
 
 ```
-    LH RD, [RA, #imm]
+    LH RD, [RS, #imm]
 ```
 
-**Description**: Halfword data is zero-extended and read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RA**.
+**Description**: Halfword data is zero-extended and read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RS**.
 
 **Alignment**: Implementations that do not support unaligned memory accesses raise an Alignment Error exception if bit 0 of the address is not cleared.
 
 **Operation**:
 
 ```
-    addr = RA + sign_extend(#imm)
+    addr = RS + sign_extend(#imm)
 
     if (addr[0] == 1)
         raise_exception(#ALI)
@@ -937,17 +1153,17 @@
 **Syntax**
 
 ```
-    LHS RD, [RA, #imm]
+    LHS RD, [RS, #imm]
 ```
 
-**Description**: Halfword data is sign-extended and read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RA**.
+**Description**: Halfword data is sign-extended and read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RS**.
 
 **Alignment**: Implementations that do not support unaligned memory accesses raise an Alignment Error exception if bit 0 of the address is not cleared.
 
 **Operation**:
 
 ```
-    addr = RA + sign_extend(#imm)
+    addr = RS + sign_extend(#imm)
 
     if (addr[0] == 1)
         raise_exception(#ALI)
@@ -999,17 +1215,17 @@
 **Syntax**
 
 ```
-    LW RD, [RA, #imm]
+    LW RD, [RS, #imm]
 ```
 
-**Description**: Word data is read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RA**.
+**Description**: Word data is read into register **RD**. The memory address is formed by adding sign-extended 12-bit immediate data to **RS**.
 
 **Alignment**: Implementations that do not support unaligned memory accesses raise an Alignment Error exception if bits 0 and 1 of the address are not cleared.
 
 **Operation**:
 
 ```
-    addr = RA + sign_extend(#imm)
+    addr = RS + sign_extend(#imm)
 
     if (addr[1:0] != 0)
         raise_exception(#ALI)
@@ -1050,6 +1266,30 @@
 
 **Exceptions**: `#ALI` (Alignment Error)
 
+# MAC
+
+**Multiply-Accumulate**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001101` | `0000000010` | `R`      |
+
+**Syntax**
+
+```
+    MAC RD, RA, RB
+```
+
+**Description**: Register **RA** is multiplied by **RB**, the result is added to **RD**. 
+
+**Operation**:
+
+```
+    RD = RA * RB + RD
+```
+
+**Exceptions**: None
+
 # MFS
 
 **Move From System**
@@ -1069,7 +1309,10 @@
 **Operation**:
 
 ```
-    RD = read_sr(#imm)
+    if (has_privilege())
+        RD = read_sr(#imm)
+    else
+        raise_exception(#PRV)
 ```
 
 **Exceptions**: `#PRV` (Privilege Error)
@@ -1099,6 +1342,30 @@
 
 **Exceptions**: None
 
+# MOVN
+
+**Move NOT**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001000` | `0000000011` | `R`      |
+
+**Syntax**
+
+```
+    MOVN RD, RB
+```
+
+**Description**: The complement of register **RB** is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = ~RB
+```
+
+**Exceptions**: None
+
 # MTS
 
 **Move To System**
@@ -1118,10 +1385,133 @@
 **Operation**:
 
 ```
-    write_sr(#imm, RD)
+    if (has_privilege())
+        write_sr(#imm, RD)
+    else
+        raise_exception(#PRV)
 ```
 
 **Exceptions**: `#PRV` (Privilege Error)
+
+# MUL
+
+**Multiply**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001101` | `0000000000` | `R`      |
+
+**Syntax**
+
+```
+    MUL RD, RA, RB
+```
+
+**Description**: Register **RA** is multiplied by **RB**, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RA * RB
+```
+
+**Exceptions**: None
+
+# MULF
+
+**Multiply Fixed-Point**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001101` | `0000000001` | `R`      |
+
+**Syntax**
+
+```
+    MULF RD, RA, RB
+```
+
+**Description**: Register **RA** is multiplied by **RB**, bits 47-16 of the result are written to **RD**. 
+
+**Operation**:
+
+```
+    RD = (RA * RB)[47:16]
+```
+
+**Exceptions**: None
+
+# NEG
+
+**Negate**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001000` | `0000000010` | `R`      |
+
+**Syntax**
+
+```
+    NEG RD, RB
+```
+
+**Description**: The 2's complement of register **RB** is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = -RB
+```
+
+**Exceptions**: None
+
+# OR (1)
+
+**Bitwise OR**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001000` | `0000000100` | `I`      |
+
+**Syntax**
+
+```
+    OR RD, RS, #imm
+```
+
+**Description**: Register **RS** is ORed with 12-bit immediate data, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RS | #imm
+```
+
+**Exceptions**: None
+
+# OR (2)
+
+**Bitwise OR**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001000` | `0000000100` | `R`      |
+
+**Syntax**
+
+```
+    OR RD, RA, RB
+```
+
+**Description**: Register **RA** is ORed with **RB**, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RA | RB
+```
+
+**Exceptions**: None
 
 # ORH
 
@@ -1147,6 +1537,30 @@
 
 **Exceptions**: None
 
+# REV
+
+**Reverse**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001001` | `0000000000` | `I`      |
+
+**Syntax**
+
+```
+    REV RD, RS
+```
+
+**Description**: The bits in register **RS** are reversed, the result is written to **RD**.
+
+**Operation**:
+
+```
+    RD = reverse_bits(RS)
+```
+
+**Exceptions**: None
+
 # SB (1)
 
 **Store Byte**
@@ -1158,15 +1572,15 @@
 **Syntax**
 
 ```
-    SB RD, [RA, #imm]
+    SB RD, [RS, #imm]
 ```
 
-**Description**: The low 8 bits of **RD** are written to memory. The memory address is formed by adding sign-extended 12-bit immediate data to **RA**.
+**Description**: The low 8 bits of **RD** are written to memory. The memory address is formed by adding sign-extended 12-bit immediate data to **RS**.
 
 **Operation**:
 
 ```
-    addr = RA + sign_extend(#imm)
+    addr = RS + sign_extend(#imm)
 
     write_byte(addr, RD[7:0])
 ```
@@ -1237,17 +1651,17 @@
 **Syntax**
 
 ```
-    SH RD, [RA, #imm]
+    SH RD, [RS, #imm]
 ```
 
-**Description**: The low 16 bits of **RD** are written to memory. The memory address is formed by adding sign-extended 12-bit immediate data to **RA**.
+**Description**: The low 16 bits of **RD** are written to memory. The memory address is formed by adding sign-extended 12-bit immediate data to **RS**.
 
 **Alignment**: Implementations that do not support unaligned memory accesses raise an Alignment Error exception if bit 0 of the address is not cleared.
 
 **Operation**:
 
 ```
-    addr = RA + sign_extend(#imm)
+    addr = RS + sign_extend(#imm)
 
     if (addr[0] == 1)
         raise_exception(#ALI)
@@ -1288,6 +1702,54 @@
 
 **Exceptions**: `#ALI` (Alignment Error)
 
+# SUB (1)
+
+**Subtract**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001000` | `0000000001` | `I`      |
+
+**Syntax**
+
+```
+    SUB RD, RS, #imm
+```
+
+**Description**: 12-bit immediate data is subtracted from register **RS**, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RS - #imm
+```
+
+**Exceptions**: None
+
+# SUB (2)
+
+**Subtract**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001000` | `0000000001` | `R`      |
+
+**Syntax**
+
+```
+    SUB RD, RA, RB
+```
+
+**Description**: Register **RB** is subtracted from **RA**, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RA - RB
+```
+
+**Exceptions**: None
+
 # SW (1)
 
 **Store Word**
@@ -1299,17 +1761,17 @@
 **Syntax**
 
 ```
-    SW RD, [RA, #imm]
+    SW RD, [RS, #imm]
 ```
 
-**Description**: Register **RD** is written to memory. The memory address is formed by adding sign-extended 12-bit immediate data to **RA**.
+**Description**: Register **RD** is written to memory. The memory address is formed by adding sign-extended 12-bit immediate data to **RS**.
 
 **Alignment**: Implementations that do not support unaligned memory accesses raise an Alignment Error exception if bits 0 and 1 of the address are not cleared.
 
 **Operation**:
 
 ```
-    addr = RA + sign_extend(#imm)
+    addr = RS + sign_extend(#imm)
 
     if (addr[1:0] != 0)
         raise_exception(#ALI)
@@ -1349,6 +1811,54 @@
 ```
 
 **Exceptions**: `#ALI` (Alignment Error)
+
+# SWPB
+
+**Swap Bytes**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001001` | `0000000100` | `I`      |
+
+**Syntax**
+
+```
+    SWPB RD, RS
+```
+
+**Description**: The byte order of register **RS** is reversed, the result is written to **RD**.
+
+**Operation**:
+
+```
+    RD = {RS[7:0], RS[15:8], RS[23:16], RS[31:24]}
+```
+
+**Exceptions**: None
+
+# SWPH
+
+**Swap Halfwords**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001001` | `0000000101` | `I`      |
+
+**Syntax**
+
+```
+    SWPH RD, RS
+```
+
+**Description**: The halfword order of register **RS** is reversed, the result is written to **RD**.
+
+**Operation**:
+
+```
+    RD = {RS[15:0], RS[31:16]}
+```
+
+**Exceptions**: None
 
 # SYSCALL
 
@@ -1397,6 +1907,54 @@
 ```
 
 **Exceptions**: `#UDF` (Undefined Instruction)
+
+# XOR (1)
+
+**Bitwise XOR**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `1001000` | `0000000101` | `I`      |
+
+**Syntax**
+
+```
+    XOR RD, RS, #imm
+```
+
+**Description**: Register **RS** is XORed with 12-bit immediate data, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RS ^ #imm
+```
+
+**Exceptions**: None
+
+# XOR (2)
+
+**Bitwise XOR**
+
+| Opcode    | Secondary    | Encoding |
+|-----------|--------------|----------|
+| `0001000` | `0000000101` | `R`      |
+
+**Syntax**
+
+```
+    XOR RD, RA, RB
+```
+
+**Description**: Register **RA** is XORed with **RB**, the result is written to **RD**. 
+
+**Operation**:
+
+```
+    RD = RA | RB
+```
+
+**Exceptions**: None
 
 # XORH
 

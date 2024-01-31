@@ -4,9 +4,9 @@ Primary Opcodes
 0000000 - UDF
 0000001 - SYSCALL
 
-0001000 - ALU
-0001001 - ALU
-0001100 - SHIFT
+0001000 - ALU1
+0001010 - ROR
+0001100 - BITFIELD
 
 0001101 - MULTIPLY
 
@@ -27,11 +27,10 @@ Primary Opcodes
 1000100 - MFS
 1000101 - MTS
 
-1001000 - ALU
-1001001 - ALU
+1001000 - ALU1
+1001001 - ALU2
+1001010 - ROR
 1001010 - CLIP
-1001011 - EXTEND
-1001100 - SHIFT
 
 1001110 - COMPARE
 
@@ -52,7 +51,30 @@ Primary Opcodes
 ```
 
 ```
-Secondary Opcodes:
+Secondary Opcodes
+
+ALU1
+xxxxxxx000 - ADD
+xxxxxxx001 - SUB
+xxxxxxx010 - NEG
+xxxxxxx011 - MOVN
+xxxxxxx100 - OR
+xxxxxxx101 - XOR
+xxxxxxx110 - AND
+xxxxxxx111 - ANDN
+
+ALU2
+xxxxxxx000 - REV
+xxxxxxx010 - CLZ
+xxxxxxx011 - CLO
+xxxxxxx100 - SWPB
+xxxxxxx101 - SWPH
+
+BITFIELD
+xxxxxxx000 - EXT
+xxxxxxx001 - INS
+xxxxxxx011 - INSZ
+xxxxxxx100 - EXTS
 
 CLIP
 xxxxxxx0x0 - CLPB
@@ -68,24 +90,12 @@ xxxxxxx100 - CNE
 xxxxxxx101 - CLS
 xxxxxxx111 - CLE
 
-EXTEND
-xxxxxxx0x0 - EXTB
-xxxxxxx0x1 - EXTH
-xxxxxxx1x0 - EXTBS
-xxxxxxx1x1 - EXTHS
-
 LOAD
 xxxxxxx000 - LB
 xxxxxxx001 - LH
 xxxxxxx010 - LW
 xxxxxxx100 - LBS
 xxxxxxx101 - LHS
-
-SHIFT
-xxxxxxxx00 - SHL
-xxxxxxxx01 - SHR
-xxxxxxxx10 - SHRS
-xxxxxxxx11 - ROR
 
 STORE
 xxxxxxxx00 - SB

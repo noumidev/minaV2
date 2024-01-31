@@ -24,7 +24,7 @@ R31        | LA     | Return address (Link Address)
 
 MINA32v2 defines four core instruction formats. Instructions are 32-bit wide and *must* be aligned on a 4-byte boundary; a misaligned **IA** will generate an exception.
 
-![Instruction Formats](../img/MINA32v2%20Instruction%20Formats.png)
+![Instruction Formats](/img/MINA32v2%20Instruction%20Formats.png)
 
 **R-type**: The Register type instruction format specifies three registers: **RD** (Destination), **RA** and **RB** (source A, source B). The available opcode space is 16 bits.
 
@@ -46,45 +46,47 @@ B        | Branch
 BL       | Branch and Link
 BLT      | Branch and Link if True
 BT       | Branch if True
-CLPB     | Clip Byte
-CLPBS    | Clip Byte Signed
-CLPH     | Clip Halfword
-CLPHS    | Clip Halfword Signed
 CEQ      | Compare Equal
 CGT      | Compare Grater Than
 CHI      | Compare Higher
 CLE      | Compare Less/Equal
+CLO      | Count Leading 1s
+CLPB     | Clip Byte
+CLPBS    | Clip Byte Signed
+CLPH     | Clip Halfword
+CLPHS    | Clip Halfword Signed
 CLS      | Compare Lower/Same
+CLZ      | Count Leading 0s
+REV      | Reverse
 CNE      | Compare Not Equal
-EXTB     | Extend Byte
-EXTBS    | Extend Byte Signed
-EXTH     | Extend Halfword
-EXTHS    | Extend Halfword Signed
+EXT      | Extract
+EXTS     | Extract Signed
+INS      | Insert
+INSZ     | Insert Zero
 LB       | Load Byte
 LBS      | Load Byte Signed
 LH       | Load Halfword
 LHS      | Load Halfword Signed
 LW       | Load Word
 MAC      | Multiply-Accumulate
-MACL     | Multiply-Accumulate Long
 MFS      | Move From System
-MOV      | Move
 MOVH     | Move High
 MOVN     | Move NOT
 MTS      | Move To System
 MUL      | Multiply
 MULF     | Multiply Fixed Point
-MULL     | Multiply Long
+NEG      | Negate
 OR       | Bitwise OR
 ORH      | Bitwise OR High
+REV      | Reverse
 ROR      | Rotate Right
 SB       | Store Byte
 SEL      | Select
 SH       | Store Halfword
-SHL      | Shift Left
-SHR      | Shift Right
-SHRS     | Shift Right Signed
+SUB      | Subtract
 SW       | Store Word
+SWPB     | Swap Bytes
+SWPH     | Swap Halfwords
 SYSCALL  | System Call
 UDF      | Architecturally Undefined
 XOR      | Bitwise Exclusive OR
