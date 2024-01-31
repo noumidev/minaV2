@@ -464,7 +464,7 @@
 
 ```
     if (RA > 0xFF)
-        RA = 0xFF
+        RD = 0xFF
     else
         RD = RA
 ```
@@ -490,10 +490,10 @@
 **Operation**
 
 ```
-    if (RA > 0x7F)
-        RA = 0x7F
-    else if (RA < -0x80)
-        RA = -0x80
+    if (signed(RA) > signed(0x7F))
+        RD = 0x7F
+    else if (signed(RA) < signed(0xFFFFFF80))
+        RD = 0xFFFFFF80
     else
         RD = RA
 ```
@@ -520,7 +520,7 @@
 
 ```
     if (RA > 0xFFFF)
-        RA = 0xFFFF
+        RD = 0xFFFF
     else
         RD = RA
 ```
@@ -546,10 +546,10 @@
 **Operation**
 
 ```
-    if (RA > 0x7FFF)
-        RA = 0x7FFF
-    else if (RA < -0x8000)
-        RA = -0x8000
+    if (signed(RA) > signed(0x7FFF))
+        RD = 0x7FFF
+    else if (signed(RA) < signed(0xFFFF8000))
+        RD = 0xFFFF8000
     else
         RD = RA
 ```
