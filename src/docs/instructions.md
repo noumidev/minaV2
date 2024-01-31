@@ -941,7 +941,7 @@
     
     #shift = secopc[9:5]
 
-    RD = {RA[31:#size+#shift], left_shift(RB[#size-1:0], #shift), RA[#shift-1:0]}
+    RD = {RA[31:#size+#shift], RB[#size+#shift-1:#shift], RA[#shift-1:0]}
 ```
 
 **Exceptions**: None
